@@ -1,2 +1,32 @@
 <app-navbar></app-navbar>
-<p>forms works!</p>
+<div>
+<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+  <form [formGroup]="formulario">
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Nombre</label>
+      <input type="text" class="form-control" id="nombre" formControlName="name" >
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Apellidos</label>
+      <input type="text" class="form-control" id="apellidos" formControlName="lastname">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Edad</label>
+      <input type="text" class="form-control" id="edad" formControlName="age" (keypress)="onlyNumber($event)">
+    </div>
+    <p *ngIf="formulario.errors && formulario.dirty">
+      <small *ngIf="formulario.hasError('required')">Necesitas llenar todos los campos</small>
+      <small *ngIf="formulario.hasError('max')">La edad no puede ser mayor a 150 no seas gracioso</small>
+    </p>
+    <button type="submit" [disabled]="formulario.invalid" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+  <ul class="list-group">
+    <li class="list-group-item">Nombre: {{formulario.value.name}}</li>
+    <li class="list-group-item">Apellidos: {{formulario.value.lastname}}</li>
+    <li class="list-group-item">Edad: {{formulario.value.age}}</li>
+  </ul>
+</div >
+
+</div>

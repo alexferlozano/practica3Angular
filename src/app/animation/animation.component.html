@@ -1,2 +1,10 @@
 <app-navbar></app-navbar>
-<p>animation works!</p>
+<div>
+  <button (click)="click()" type="button" class="btn btn-danger">{{show ? 'Que se vaya' : 'Que venga'}}</button>
+</div>
+<div *ngIf="show" [@flyOut]>
+  <div [@openClose]="isOpen ? 'open' : 'closed'" class="open-close-container" (click)="toggle()">
+    <p>The box is now {{ isOpen ? 'Open' : 'Closed' }}!</p>
+  </div>
+</div>
+
